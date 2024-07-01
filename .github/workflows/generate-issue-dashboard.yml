@@ -15,6 +15,9 @@ jobs:
         with:
           ref: 'gh-pages'
           path: 'out'
+      - name: Create pages
+        run: |
+            mkdir -p docs
       - name: 'Generate Dashboard'
         uses: ethomson/issue-dashboard@v1
         with:
@@ -22,7 +25,7 @@ jobs:
             title: 'Dashboard'
             output:
               format: html
-              filename: 'out/dashboard.html'
+              filename: 'out/docs/dashboard.html'
             sections:
               - title: 'Open Issues by Type'
                 description: 'Queries of issues by type, using their label.'
@@ -73,8 +76,8 @@ jobs:
       - name: Publish Documentation
         run: |
             git add .
-            git config user.name 'Dashboard User'
-            git config user.email 'nobody@nowhere'
+            git config user.name github-actions
+            git config user.email github-actions@github.com
             git commit -m 'Documentation update' --allow-empty
             git push origin gh-pages
         working-directory: out
