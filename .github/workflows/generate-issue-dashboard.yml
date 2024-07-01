@@ -17,7 +17,7 @@ jobs:
           path: 'out'
       - name: Create pages
         run: |
-            mkdir -p docs
+            mkdir -p out/docs
       - name: 'Generate Dashboard'
         uses: ethomson/issue-dashboard@v1
         with:
