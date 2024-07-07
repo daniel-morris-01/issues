@@ -34,7 +34,7 @@ jobs:
                   title: 'Bug'
                   issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:bug'
                   color: 'red'
-                  type: 'table'
+                - type: 'table'
                   title: 'Issues Tier 1'
                   issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:needs-triage sort:created-asc'
 
