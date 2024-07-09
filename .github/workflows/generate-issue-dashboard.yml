@@ -2,6 +2,9 @@ name: Generate issue dashboard
 
 on:
   issues:
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
 jobs:
   generate-issues-html:
     runs-on: ubuntu-latest
