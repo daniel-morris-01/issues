@@ -1,9 +1,7 @@
 name: Generate issue dashboard
 
 on:
-  schedule:
-    - cron: '*/5 * * * *'
-    
+  issues:
 jobs:
   generate-issues-html:
     runs-on: ubuntu-latest
