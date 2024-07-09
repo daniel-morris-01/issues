@@ -35,6 +35,9 @@ jobs:
                 - type: 'table'
                   title: 'Issues Tier 1'
                   issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:needs-triage sort:created-asc'
+                - type: 'table'
+                  title: 'Issues es dri'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:fab-es-dri sort:created-asc'
 
               
           token: ${{ github.token }}
