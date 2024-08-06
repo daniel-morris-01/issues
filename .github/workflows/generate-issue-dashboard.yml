@@ -20,7 +20,7 @@ jobs:
         run: |
             mkdir -p out/docs
       - name: 'Generate Dashboard'
-        uses: ./actions/issue-dashboard
+        uses: ./.github/actions/issue-dashboard
         with:
           config: |
             title: 'Dashboard'
