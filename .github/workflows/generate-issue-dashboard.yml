@@ -20,7 +20,7 @@ jobs:
         run: |
             mkdir -p out/docs
       - name: 'Generate Dashboard'
-        uses: ethomson/issue-dashboard@v1
+        uses: issue-dashboard@v1
         with:
           config: |
             title: 'Dashboard'
