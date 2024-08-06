@@ -8,8 +8,8 @@ inputs:
   token: 
     description: The Personal Authentication Token to use for authentication.
 runs:
-  using: 'node12'
-  main: 'dashboard-generator/index.js'
+  using: 'node20'
+  main: './dashboard-generator/index.js'
 branding:
   icon: 'align-left' 
   color: blue
