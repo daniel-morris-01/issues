@@ -112,10 +112,8 @@ jobs:
         with:
           config: |
             title: 'dashboard-assigned-to-you'
-            title: 'dashboard-assigned-to-you'
             output:
               format: html
-              filename: 'out/dashboard-assigned-to-you.html'
               filename: 'out/dashboard-assigned-to-you.html'
             sections:
               - title: 'Issues assigned to you'
