@@ -36,7 +36,7 @@ jobs:
                 - type: 'number'
                   title: 'Open Tier 1'
                   issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:tier-1 -label:resolved'
-                  color: 'yellow'  
+                  color: 'yellow'
                 - type: 'table'
                   title: 'Tier 1'
                   issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:tier-1 -label:resolved sort:created-asc'
