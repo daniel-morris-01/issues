@@ -61,6 +61,26 @@ jobs:
                   title: 'Tier 2'
                   issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:tier-2 -label:resolved  sort:created-asc'
           token: ${{ github.token }}
+      - name: 'Generate es dri Dashboard'
+        uses: ./.github/actions/issue-dashboard
+        with:
+          config: |
+            title: 'dashboard-es-dri'
+            output:
+              format: html
+              filename: 'out/dashboard-es-dri.html'
+            sections:
+              - title: 'Open Issues'
+                description: 'ES DRI'
+                widgets:
+                - type: 'number'
+                  title: 'Open ES'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:es-dri -label:resolved'
+                  color: 'red'
+                - type: 'table'
+                  title: 'Fab ES'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:es-dri -label:resolved  sort:created-asc'
+          token: ${{ github.token }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload pages artifact
