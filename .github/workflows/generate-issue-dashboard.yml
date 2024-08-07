@@ -41,73 +41,7 @@ jobs:
                   title: 'Tier 1'
                   issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:tier-1 -label:resolved sort:created-asc'
           token: ${{ github.token }}      
-      - name: 'Generate tier 2 Dashboard'
-        uses: ./.github/actions/issue-dashboard
-        with:
-          config: |
-            title: 'dashboard-t2'
-            output:
-              format: html
-              filename: 'out/dashboard-t2.html'
-            sections:
-              - title: 'Open Issues'
-                description: 'Tier 2'
-                widgets:
-                - type: 'number'
-                  title: 'Open Tier 2'
-                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:tier-2 -label:resolved'
-                  color: 'red'
-                - type: 'table'
-                  title: 'Tier 2'
-                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:tier-2 -label:resolved  sort:created-asc'
-          token: ${{ github.token }}
-      - name: 'Generate es dri Dashboard'
-        uses: ./.github/actions/issue-dashboard
-        with:
-          config: |
-            title: 'dashboard-es-dri'
-            output:
-              format: html
-              filename: 'out/dashboard-es-dri.html'
-            sections:
-              - title: 'Open Issues'
-                description: 'ES DRI'
-                widgets:
-                - type: 'number'
-                  title: 'Open ES'
-                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:es-dri -label:resolved'
-                  color: 'red'
-                - type: 'table'
-                  title: 'Fab ES'
-                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:es-dri -label:resolved  sort:created-asc'
-          token: ${{ github.token }}
-      - name: 'Generate your issue Dashboard'
-        uses: ./.github/actions/issue-dashboard
-        with:
-          config: |
-            title: 'dashboard-yours'
-            output:
-              format:  html
-              filename: 'out/dashboard-yours.html'
-            sections:
-              - title: 'Your open Issues'
-                description: 'Your open Issues'
-                widgets:
-                - type: 'number'
-                  title: 'Number'
-                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue author:@me -label:resolved'
-                  color: 'red'
-                - type: 'table'
-                  title: 'Your open Issues'
-                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue author:@me -label:resolved sort:created-asc'
-                - type: 'table'
-                  title: 'Your resolved Issues'
-                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue author:@me label:resolved sort:created-asc'
-                - type: 'table'
-                  title: 'Your closed Issues'
-                  issue_query: 'repo:daniel-morris-01/issues is:closed is:issue author:@me sort:created-asc'
-          token: ${{ github.token }}
-      - name: 'Generate issues assigned to you Dashboard'
+
         uses: ./.github/actions/issue-dashboard
         with:
           config: |
