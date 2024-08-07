@@ -81,6 +81,32 @@ jobs:
                   title: 'Fab ES'
                   issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:es-dri -label:resolved  sort:created-asc'
           token: ${{ github.token }}
+      - name: 'Generate your issue Dashboard'
+        uses: ./.github/actions/issue-dashboard
+        with:
+          config: |
+            title: 'dashboard-yours'
+            output:
+              format:  html
+              filename: 'out/dashboard-yours.html'
+            sections:
+              - title: 'Your open Issues'
+                description: 'Your open Issues'
+                widgets:
+                - type: 'number'
+                  title: 'Number'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue author:@me -label:resolved'
+                  color: 'red'
+                - type: 'table'
+                  title: 'Your open Issues'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue author:@me -label:resolved sort:created-asc'
+                - type: 'table'
+                  title: 'Your resolved Issues'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue author:@me label:resolved sort:created-asc'
+                - type: 'table'
+                  title: 'Your closed Issues'
+                  issue_query: 'repo:daniel-morris-01/issues is:closed is:issue author:@me sort:created-asc'
+          token: ${{ github.token }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload pages artifact
