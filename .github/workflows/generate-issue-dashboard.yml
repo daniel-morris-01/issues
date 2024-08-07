@@ -107,7 +107,7 @@ jobs:
                   title: 'Your closed Issues'
                   issue_query: 'repo:daniel-morris-01/issues is:closed is:issue author:@me sort:created-asc'
           token: ${{ github.token }}
-      - name: 'Generate your issue Dashboard'
+      - name: 'Generate issues assigned to you Dashboard'
         uses: ./.github/actions/issue-dashboard
         with:
           config: |
