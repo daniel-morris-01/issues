@@ -18,7 +18,7 @@ jobs:
         uses: ./.github/actions/issue-dashboard
         with:
           config: |
-            title: 'dashboard-t1'
+            title:'dashboard-t1'
             output:
               format: html
               filename: 'out/dashboard-t1.html'
