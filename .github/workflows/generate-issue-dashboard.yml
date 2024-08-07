@@ -20,7 +20,7 @@ jobs:
             mkdir -p out
             cp -r .github/pages/dashboard.css out/dashboard.css
       - name: 'Generate tier 1 Dashboard'
-        uses: ./.github/pages/issue-dashboard
+        uses: ./.github/actions/issue-dashboard
         with:
           config: |
             title: 'dashboard-t1'
