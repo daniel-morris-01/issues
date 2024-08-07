@@ -154,6 +154,7 @@ jobs:
           # Upload output directory
           path: './out/'
   deploy:
+    needs: generate-issues-html
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
