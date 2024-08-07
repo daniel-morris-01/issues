@@ -11,44 +11,154 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Check out GitHub Pages branch
-        uses: actions/checkout@v4
-        with:
-          ref: 'gh-pages'
-          path: 'out'
-      - name: Create pages
+      - name: Create output directory
         run: |
-            mkdir -p out/docs
-      - name: 'Generate Dashboard'
+            mkdir -p out
+      - name: 'Generate tier 1 Dashboard'
         uses: ./.github/actions/issue-dashboard
         with:
           config: |
-            title: 'Dashboard'
+            title: 'dashboard-t1'
             output:
               format: html
-              filename: 'out/docs/dashboard.html'
+              filename: 'out/dashboard-t1.html'
             sections:
-              - title: 'Open Issues by Type'
-                description: 'Queries of issues by type, using their label.'
+              - title: 'Open Issues'
+                description: 'Tier 1'
                 widgets:
                 - type: 'number'
-                  title: 'Bug'
-                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:bug'
+                  title: 'Needs Triage'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:needs-triage'
                   color: 'red'
                 - type: 'table'
-                  title: 'Issues Tier 1'
+                  title: 'Triage'
                   issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:needs-triage sort:created-asc'
+                - type: 'number'
+                  title: 'Open Tier 1'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:tier-1 -label:resolved'
+                  color: 'yellow'  
                 - type: 'table'
-                  title: 'Issues es dri'
-                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:fab-es-dri sort:created-asc'
-
-              
+                  title: 'Tier 1'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:tier-1 -label:resolved sort:created-asc'
+          token: ${{ github.token }}      
+      - name: 'Generate tier 2 Dashboard'
+        uses: ./.github/actions/issue-dashboard
+        with:
+          config: |
+            title: 'dashboard-t2'
+            output:
+              format: html
+              filename: 'out/dashboard-t2.html'
+            sections:
+              - title: 'Open Issues'
+                description: 'Tier 2'
+                widgets:
+                - type: 'number'
+                  title: 'Open Tier 2'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:tier-2 -label:resolved'
+                  color: 'red'
+                - type: 'table'
+                  title: 'Tier 2'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:tier-2 -label:resolved  sort:created-asc'
           token: ${{ github.token }}
-      - name: Publish Documentation
-        run: |
-            git add .
-            git config user.name github-actions
-            git config user.email github-actions@github.com
-            git commit -m 'Documentation update' --allow-empty
-            git push origin gh-pages
-        working-directory: out
+      - name: 'Generate es dri Dashboard'
+        uses: ./.github/actions/issue-dashboard
+        with:
+          config: |
+            title: 'dashboard-es-dri'
+            output:
+              format: html
+              filename: 'out/dashboard-es-dri.html'
+            sections:
+              - title: 'Open Issues'
+                description: 'ES DRI'
+                widgets:
+                - type: 'number'
+                  title: 'Open ES'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:es-dri -label:resolved'
+                  color: 'red'
+                - type: 'table'
+                  title: 'Fab ES'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:es-dri -label:resolved  sort:created-asc'
+          token: ${{ github.token }}
+      - name: 'Generate your issue Dashboard'
+        uses: ./.github/actions/issue-dashboard
+        with:
+          config: |
+            title: 'dashboard-yours'
+            output:
+              format: html
+              filename: 'out/dashboard-yours.html'
+            sections:
+              - title: 'Your open Issues'
+                description: 'Your open Issues'
+                widgets:
+                - type: 'number'
+                  title: 'Number'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue author:@me -label:resolved'
+                  color: 'red'
+                - type: 'table'
+                  title: 'Your open Issues'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue author:@me -label:resolved sort:created-asc'
+                - type: 'table'
+                  title: 'Your resolved Issues'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue author:@me label:resolved sort:created-asc'
+                - type: 'table'
+                  title: 'Your closed Issues'
+                  issue_query: 'repo:daniel-morris-01/issues is:closed is:issue author:@me sort:created-asc'
+          token: ${{ github.token }}
+      - name: 'Generate your issue Dashboard'
+        uses: ./.github/actions/issue-dashboard
+        with:
+          config: |
+            title: 'dashboard-assigned-to-you'
+            title: 'dashboard-assigned-to-you'
+            output:
+              format: html
+              filename: 'out/dashboard-assigned-to-you.html'
+              filename: 'out/dashboard-assigned-to-you.html'
+            sections:
+              - title: 'Issues assigned to you'
+                description: 'Issues assigned to you'
+              - title: 'Issues assigned to you'
+                description: 'Issues assigned to you'
+                widgets:
+                - type: 'number'
+                  title: 'Number'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue -label:resolved assignee:@me 
+                  title: 'Number'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue -label:resolved assignee:@me 
+                  color: 'red'
+                - type: 'table'
+                  title: 'Open issues assigned to you'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue -label:resolved assignee:@me sort:created-asc'
+                - type: 'table'
+                  title: 'Resolved issues assigned to you'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:resolved assignee:@me sort:created-asc'
+                  title: 'Open issues assigned to you'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue -label:resolved assignee:@me sort:created-asc'
+                - type: 'table'
+                  title: 'Resolved issues assigned to you'
+                  issue_query: 'repo:daniel-morris-01/issues is:open is:issue label:resolved assignee:@me sort:created-asc'
+                - type: 'table'
+                  title: 'Closed issues assigned to you'
+                  issue_query: 'repo:daniel-morris-01/issues is:closed is:issue assignee:@me sort:created-asc'
+                  title: 'Closed issues assigned to you'
+                  issue_query: 'repo:daniel-morris-01/issues is:closed is:issue assignee:@me sort:created-asc'
+          token: ${{ github.token }}
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload output directory
+          path: './out/'
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
