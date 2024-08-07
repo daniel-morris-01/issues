@@ -18,7 +18,7 @@ jobs:
       - name: Create output directory
         run: |
             mkdir -p out
-            cp -r .github/actions/dashboard.css out/dashboard.css
+            cp -r .github/pages/dashboard.css out/dashboard.css
       - name: 'Generate tier 1 Dashboard'
         uses: ./.github/pages/issue-dashboard
         with:
